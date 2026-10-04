@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using Todo.Domain.Entities;
+using Todo.Domain.Queries;
 
 namespace Todo.Domain.Repositories
 {
@@ -7,5 +10,9 @@ namespace Todo.Domain.Repositories
         void Create(TodoItem todo);
         void Update(TodoItem todo);
         TodoItem GetById(Guid id, string user);
+        IEnumerable<TodoItem> GetAll(string user);
+        IEnumerable<TodoItem> GetAllDone(string user);
+        IEnumerable<TodoItem> GetAllUndone(string user);
+        IEnumerable<TodoItem> GetAllByPeriod(string user, DateTime date);
     }
 }
