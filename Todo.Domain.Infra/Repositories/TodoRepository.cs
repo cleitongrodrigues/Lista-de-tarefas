@@ -29,11 +29,11 @@ public class TodoRepository : ITodoRepository
             .OrderBy(x => x.Date);
     }
 
-    public IEnumerable<TodoItem> GetAllByPeriod(string user, DateTime date)
+    public IEnumerable<TodoItem> GetAllByPeriod(string user, DateTime date, bool done)
     {
         return _context.Todos
             .AsNoTracking()
-            .Where(TodoQueries.GetByPeriod(user, date))
+            .Where(TodoQueries.GetByPeriod(user, date, done))
             .OrderBy(x => x.Date);
     }
 

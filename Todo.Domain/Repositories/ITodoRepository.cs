@@ -13,6 +13,6 @@ namespace Todo.Domain.Repositories
         IEnumerable<TodoItem> GetAll(string user);
         IEnumerable<TodoItem> GetAllDone(string user);
         IEnumerable<TodoItem> GetAllUndone(string user);
-        IEnumerable<TodoItem> GetAllByPeriod(string user, DateTime date);
+        IEnumerable<TodoItem> GetAllByPeriod(string user, DateTime date, bool done);
     }
 }

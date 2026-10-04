@@ -25,7 +25,7 @@ public class FakeTodoRepository : ITodoRepository
         return Array.Empty<TodoItem>();
     }
 
-    public IEnumerable<TodoItem> GetAllByPeriod(string user, DateTime date)
+    public IEnumerable<TodoItem> GetAllByPeriod(string user, DateTime date, bool done)
     {
         return Array.Empty<TodoItem>();
     }
