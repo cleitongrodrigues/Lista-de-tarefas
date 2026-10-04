@@ -40,6 +40,9 @@ public class TodoHandler :
             return new GenericCommandResult(false, "Ops, algo deu errado!", command.Notifications);
 
         var todo = _repository.GetById(command.Id, command.User);
+        if (todo is null)
+            return new GenericCommandResult(false, "Tarefa não encontrada.", null);
+
         todo.UpdateTitle(command.Title);
         _repository.Update(todo);
 
@@ -53,6 +56,8 @@ public class TodoHandler :
             return new GenericCommandResult(false, "Ops, algo deu errado!", command.Notifications);
 
         var todo = _repository.GetById(command.Id, command.User);
+        if (todo is null)
+            return new GenericCommandResult(false, "Tarefa não encontrada.", null);
 
         todo.MarkAsDone();
 
@@ -68,6 +73,8 @@ public class TodoHandler :
             return new GenericCommandResult(false, "Ops, algo deu errado!", command.Notifications);
 
         var todo = _repository.GetById(command.Id, command.User);
+        if (todo is null)
+            return new GenericCommandResult(false, "Tarefa não encontrada.", null);
 
         todo.MarkAsUndone();
         

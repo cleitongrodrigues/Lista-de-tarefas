@@ -15,7 +15,7 @@ namespace Todo.Domain.Commands
             User = user;
         }
         public Guid Id { get; set; }
-        public string User { get; set; }
+        public string User { get; set; } = string.Empty;
          public void Validate()
         {
             AddNotifications(

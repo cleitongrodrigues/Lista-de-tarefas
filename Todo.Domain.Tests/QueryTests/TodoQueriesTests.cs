@@ -12,11 +12,11 @@ public class TodoQueryTests
     public TodoQueryTests()
     {
         _items = new List<TodoItem>();
-        _items.Add(new TodoItem("Tarefa 1", "usuario1", DateTime.Now));
-        _items.Add(new TodoItem("Tarefa 2", "usuario2", DateTime.Now));
-        _items.Add(new TodoItem("Tarefa 3", "cleiton", DateTime.Now));
-        _items.Add(new TodoItem("Tarefa 4", "douglas", DateTime.Now));
-        _items.Add(new TodoItem("Tarefa 5", "cleiton", DateTime.Now));
+        _items.Add(new TodoItem("Tarefa 1", DateTime.Now, "usuario1"));
+        _items.Add(new TodoItem("Tarefa 2", DateTime.Now, "usuario2"));
+        _items.Add(new TodoItem("Tarefa 3", DateTime.Now, "cleiton"));
+        _items.Add(new TodoItem("Tarefa 4", DateTime.Now, "douglas"));
+        _items.Add(new TodoItem("Tarefa 5", DateTime.Now, "cleiton"));
     }
     
     [TestMethod]

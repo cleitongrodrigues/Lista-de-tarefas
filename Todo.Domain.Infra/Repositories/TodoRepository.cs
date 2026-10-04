@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Todo.Domain.Entities;
 using Todo.Domain.Infra.Contexts;
+using Todo.Domain.Queries;
 using Todo.Domain.Repositories;
 
 namespace Todo.Domain.Infra.Repositories;
@@ -22,27 +23,40 @@ public class TodoRepository : ITodoRepository
 
     public IEnumerable<TodoItem> GetAll(string user)
     {
-        throw new NotImplementedException();
+        return _context.Todos
+            .AsNoTracking() // Evita o rastreamento de alterações para melhorar o desempenho
+            .Where(TodoQueries.GetAll(user))
+            .OrderBy(x => x.Date);
     }
 
     public IEnumerable<TodoItem> GetAllByPeriod(string user, DateTime date)
     {
-        throw new NotImplementedException();
+        return _context.Todos
+            .AsNoTracking()
+            .Where(TodoQueries.GetByPeriod(user, date))
+            .OrderBy(x => x.Date);
     }
 
     public IEnumerable<TodoItem> GetAllDone(string user)
     {
-        throw new NotImplementedException();
+        return _context.Todos
+            .AsNoTracking()
+            .Where(TodoQueries.GetAllDone(user))
+            .OrderBy(x => x.Date);
     }
 
     public IEnumerable<TodoItem> GetAllUndone(string user)
     {
-        throw new NotImplementedException();
+        return _context.Todos
+            .AsNoTracking()
+            .Where(TodoQueries.GetAllUndone(user))
+            .OrderBy(x => x.Date);
     }
 
-    public TodoItem GetById(Guid id, string user)
+    public TodoItem? GetById(Guid id, string user)
     {
-        throw new NotImplementedException();
+        return _context.Todos
+            .FirstOrDefault(x => x.Id == id && x.User == user);
     }
 
     public void Update(TodoItem todo)

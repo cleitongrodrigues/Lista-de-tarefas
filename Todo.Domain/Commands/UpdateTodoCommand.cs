@@ -13,8 +13,8 @@ public class UpdateTodoCommand : Notifiable, ICommand
         User = user;
     }
     public Guid Id { get; set; }
-    public string Title { get; set; }
-    public string User { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string User { get; set; } = string.Empty;
     public void Validate()
     {
         AddNotifications(

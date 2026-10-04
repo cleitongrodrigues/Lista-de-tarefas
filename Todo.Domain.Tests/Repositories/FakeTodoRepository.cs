@@ -10,7 +10,27 @@ public class FakeTodoRepository : ITodoRepository
         
     }
 
-    public TodoItem GetById(Guid id, string user)
+    public IEnumerable<TodoItem> GetAll(string user)
+    {
+        return Array.Empty<TodoItem>();
+    }
+
+    public IEnumerable<TodoItem> GetAllDone(string user)
+    {
+        return Array.Empty<TodoItem>();
+    }
+
+    public IEnumerable<TodoItem> GetAllUndone(string user)
+    {
+        return Array.Empty<TodoItem>();
+    }
+
+    public IEnumerable<TodoItem> GetAllByPeriod(string user, DateTime date)
+    {
+        return Array.Empty<TodoItem>();
+    }
+
+    public TodoItem? GetById(Guid id, string user)
     {
         return new TodoItem("Titulo", DateTime.Now, user);
     }

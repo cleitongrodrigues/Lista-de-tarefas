@@ -1,13 +1,8 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Todo.Domain.Infra.Contexts;
 using Todo.Domain.Handlers;
-using Todo.Domain.Infra.Interfaces;
 using Todo.Domain.Infra.Repositories;
+using Todo.Domain.Repositories;
 
 namespace Todo.Domain.Api
 {
@@ -34,8 +29,6 @@ namespace Todo.Domain.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
