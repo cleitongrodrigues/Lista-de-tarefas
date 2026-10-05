@@ -3,6 +3,8 @@ using Todo.Domain.Infra.Contexts;
 using Todo.Domain.Handlers;
 using Todo.Domain.Infra.Repositories;
 using Todo.Domain.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Todo.Domain.Api
 {
@@ -22,6 +24,22 @@ namespace Todo.Domain.Api
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("defaultconnection")));
             services.AddTransient<ITodoRepository, TodoRepository>();
             services.AddTransient<TodoHandler, TodoHandler>();
+
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "https://securetoken.google.com/autenticacao-ac124";
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = "https://securetoken.google.com/autenticacao-ac124",
+                        ValidateAudience = true,
+                        ValidAudience = "autenticacao-ac124",
+                        ValidateLifetime = true
+                    };
+                });
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
