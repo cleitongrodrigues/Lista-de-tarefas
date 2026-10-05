@@ -19,7 +19,10 @@ namespace Todo.Domain.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOpenApi();
             services.AddControllers();
+            services.AddCors();
+            services.AddAuthorization();
             // services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("defaultconnection")));
             services.AddTransient<ITodoRepository, TodoRepository>();
@@ -63,6 +66,10 @@ namespace Todo.Domain.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                if (env.IsDevelopment())
+                {
+                    endpoints.MapOpenApi();
+                }
             });
         }
     }
